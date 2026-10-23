@@ -1,0 +1,55 @@
+{
+  "version": "0.1.0",
+  "target": "B42.21 / Steam25485521",
+  "checks": {
+    "geometry": {
+      "source_vertices": 2919,
+      "triangles": 5262,
+      "weighted_bones": 25,
+      "max_influences": 2,
+      "max_weight_sum_error": 0.0,
+      "minimum_triangle_area": 1.585003917914198e-07,
+      "native_animation_payloads": 0
+    },
+    "native_mesh_import": {
+      "exit_code": 0,
+      "stdout": "MESHES\n1\nVERTICES\n15786\nFACES\n5262\nBONES\n25\nANIMATIONS\n0",
+      "stderr": ""
+    },
+    "lua_compile_EwingsAnimals_Avatar.lua": {
+      "exit_code": 0,
+      "stdout": "LUA_COMPILE_OK",
+      "stderr": ""
+    },
+    "lua_compile_EwingsAnimals_CatDefinitions.lua": {
+      "exit_code": 0,
+      "stdout": "LUA_COMPILE_OK",
+      "stderr": ""
+    },
+    "native_script_parse_ewingsanimals_models.txt": {
+      "exit_code": 0,
+      "stdout": "MODEL_SCRIPT_PARSE_OK",
+      "stderr": ""
+    },
+    "native_lua_definition_execution": {
+      "exit_code": 0,
+      "stdout": "LUA_EXECUTION_OK",
+      "stderr": ""
+    },
+    "scope": {
+      "new_species_only": true,
+      "automatic_spawns": false,
+      "companion_systems": false,
+      "native_references_unchanged": true,
+      "installation_performed": false,
+      "game_launched": false,
+      "runtime_certified": false,
+      "multiplayer_certified": false
+    }
+  },
+  "limits": [
+    "Assimp importer and script/Lua parsers are isolated asset checks, not game rendering.",
+    "No gameplay, save/reload or multiplayer tests were run.",
+    "Milk configuration and native consumption path are statically grounded; actual feeding needs disposable-world acceptance."
+  ]
+}

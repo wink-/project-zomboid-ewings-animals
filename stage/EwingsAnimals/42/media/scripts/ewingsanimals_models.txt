@@ -1,0 +1,16 @@
+module Base
+{
+    model EwingsAnimals_CatAdult
+    {
+        mesh = Skinned/EwingsCat_Adult,
+        shader = animalEffect,
+        static = false,
+        animationsMesh = Raccoon,
+        attachment head
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+            bone = Bip01_Head,
+        }
+    }
+}

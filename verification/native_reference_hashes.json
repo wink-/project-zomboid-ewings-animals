@@ -1,0 +1,18 @@
+{
+  "media/lua/shared/Definitions/animal/RaccoonDefinitions.lua": {
+    "before": "55185497017826ae3a1d3f3e980f963de29644797ea4d992d40ea9e483ca502c",
+    "after": "55185497017826ae3a1d3f3e980f963de29644797ea4d992d40ea9e483ca502c"
+  },
+  "media/scripts/generated/models_animals.txt": {
+    "before": "148a08e544ea44714617681bac2d770ad82beac899a20e3b51ec40c72950a1d0",
+    "after": "148a08e544ea44714617681bac2d770ad82beac899a20e3b51ec40c72950a1d0"
+  },
+  "media/models_X/Skinned/Raccoon_Body.x": {
+    "before": "a8cc66ee09bae74f02f1dbc045a528989cb02e9f7df5ec720f25b8d706348320",
+    "after": "a8cc66ee09bae74f02f1dbc045a528989cb02e9f7df5ec720f25b8d706348320"
+  },
+  "projectzomboid.jar": {
+    "before": "e1a69eb743ede60b213a0fe7f8b83d4fcab773036d256cc4543a336f3b058a33",
+    "after": "e1a69eb743ede60b213a0fe7f8b83d4fcab773036d256cc4543a336f3b058a33"
+  }
+}

@@ -1,0 +1,13 @@
+release/
+.library-transfer*/
+__pycache__/
+*.pyc
+*.class
+*.blend1
+*.blend2
+*.log
+verification/probes/
+verification/definition_assertions.lua
+verification/*delivery*.json
+verification/*upload*.json
+verification/*sanitization*.json
