@@ -1,4 +1,4 @@
-# Offline validation — Ewing's Animals 0.1.0
+# Offline validation - Ewing's Animals 0.1.2
 
 Target: B42.21 / Steam25485521, Windows.
 
@@ -6,8 +6,16 @@ Target: B42.21 / Steam25485521, Windows.
 - At most 2 normalized bone influences per vertex.
 - Installed native Assimp importer: passed; no embedded animation clips.
 - Installed native model-script parser: passed.
-- Installed native Lua compiler: both mod scripts passed.
-- Installed Kahlua execution: additive registration/adult/diet/milk/scope assertions passed.
+- Installed native Lua compiler: all runtime Lua scripts passed.
+- Installed Kahlua execution: additive adult/kitten registration, growth, diet, milk and scope assertions passed.
+- Cat-only petting XML parsed natively; native action delegation/cleanup and normal/dwarf selection assertions passed.
+- Native petting supplies its own stress effect and cooldown; no custom stress values or global overrides.
+- Native pickup path/action/inventory conversion inspected and stub-tested.
+- Actual Java animal-definition loader parsed native raccoons and both cats.
+- Installed JVM reproduced NaN weight from zero stage duration and finite pickup-eligible weight with duration 60.
+- Cat-only food menu and kitten XML parser checks passed; live menu integration remains pending.
+- No pickup/acceptance bypass or save migration was added.
+- Original mesh, texture, icon and Blender source match v0.1.0 byte for byte.
 - Four native motion clips sampled at five phases each: 20 offline poses passed.
 - Independent linear skinning comparison maximum error: 0.0000040946 model units.
 - Reference hashes match the baseline; no native files were changed.

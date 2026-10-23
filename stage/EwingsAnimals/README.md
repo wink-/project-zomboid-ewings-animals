@@ -1,133 +1,96 @@
-# Ewing's Animals — adult cat prototype 0.1.0
+# Ewing's Animals 0.1.2 prototype
 
-Standalone mod ID: `EwingsAnimals`. Target inspected: Project Zomboid B42.21,
-Steam build 25485521, Windows. This is an offline-validated prototype for future
-disposable-world testing. It has not been installed or run in the game.
+Standalone mod ID `EwingsAnimals`; target inspected B42.21 / Steam25485521,
+Windows. Original brown tabby cats using native raccoon motions and native
+animal care. No companion/follow/command system, breeding or automatic spawns.
+Native raccoons are unchanged. This update is offline tested; gameplay,
+existing-save repair and multiplayer are not certified.
 
 Offline previews are included with the source ZIP and prototype release.
 
-*Offline Blender renders, not in-game screenshots. Stylized angular geometry
-and raccoon-derived motion remain visible; game appearance is unverified.*
+*Offline adult Blender renders, not game screenshots. Kittens currently reuse
+the original adult geometry at smaller scale, without juvenile-specific anatomy.*
 
-The first animal is an original, stylized adult brown tabby: newly authored
-geometry, UVs, coat, eyes, ears, muzzle, paws, tail and inventory icon. It uses
-the installed base game's raccoon motion system by reference. Native raccoons
-are unchanged. There are no companion commands, follow systems, combat systems,
-kittens, breeding, automatic population spawns, recipes or dependencies on
-Companion Dogs/CD: Cats.
+## Changes and pickup diagnosis
 
-## Contents and identifiers
+The former adult stage had `ageToGrow=0`. B42.21 `AnimalData.initWeight` divides
+the weight range by the current stage duration, even for a terminal adult.
+At age=minAge, infinity multiplied by zero yields NaN; the native pickup
+comparison then fails. This arithmetic regression was reproduced in the
+installed JVM. Adult duration is now 60, matching terminal native raccoon
+adults. No nextStage is added to adults, so they remain adults.
 
-- `stage/EwingsAnimals/`: installable mod folder, with `42/mod.info` and `common/`.
-- `art/EwingsCat_Adult.blend`: original authoring model, packed original texture,
-  and compatibility armature. No native animation actions are embedded.
-- `tools/`: reproducible original-model builder, exporter, parser checks and
-  deterministic packager. Tools are not required to play the packaged mod.
-- `previews/`: offline Blender images, not screenshots of the game.
-- `verification/`: final offline check reports and unchanged-reference hashes.
+The reported live animal's stored weight was not inspected. This is a proven
+definition defect, not a claim that every runtime cause has been eliminated.
+A cat-only handling line shows actual weight and the pickup limit; right-click
+also logs the loaded type, weight, native pickup result, attachment, wild and
+animal-cheat state. This diagnostic changes no animal data.
 
-Stable animal type: `ewingsanimals_catadult`; group: `ewingsanimals_cat`;
-coat/breed: `ewingsanimals_browntabby`; model: `EwingsAnimals_CatAdult`.
-The mod ID reserves room for future species without renaming the project.
+Native pickup requires `canBePicked` and weight strictly below
+`40 + 7 * Strength`, apart from native god/unlimited-carry exceptions. There is
+no acceptance or rope threshold. Native path adjacency and timed-action
+distance/existence checks remain. Successful pickup creates `Base.Animal`,
+puts the animal in inventory/hands and clears its wild flag. No pickup bypass
+or replacement action is included. Rope attachment is disabled on both types;
+vanilla animal-cheat mode can still display its own rope option.
 
-## Future manual install and first spawn
+Adults retain native raccoon wild/flee flags, wander interval, turn rate and
+motion system, with lower configured weight. The zero-duration repair and
+solid hand-food access address defects without making every adult instantly
+tame. Stress, acceptance and inherited genetic disorders remain native.
 
-Installation has intentionally not been performed. When ready to test, close
-the game and use a disposable user-data directory/world. Extract the install
-ZIP so the chosen test `mods` directory contains `EwingsAnimals/42/mod.info`
-and `EwingsAnimals/common/`, then enable Ewing's Animals. Do not merge files
-into the installation or an unrelated existing mod. Verify the exact loader
-layout again if using a different B42 build or a custom `-cachedir`.
+## Kittens, feeding and petting
 
-Start the disposable world with the game's debug tools. Use its native animal
-spawn menu and select type `ewingsanimals_catadult`, breed
-`ewingsanimals_browntabby`, live/non-skeleton. The mod does not add a custom
-spawn hook or alter any map/trap/migration distributions. If the native menu
-does not list the type, stop and inspect the test log rather than adding a
-population workaround. Test single-player first; see ACCEPTANCE.md.
+Stable adult: `ewingsanimals_catadult`; new kitten: `ewingsanimals_kitten`;
+group: `ewingsanimals_cat`; breed: `ewingsanimals_browntabby`.
+Kittens start non-wild with `alwaysFleeHumans=false`, using the native domestic
+fear/acceptance branch. This is friendly behavior, not fixed acceptance or
+immunity to panic/zombies/stress. Scale 0.5-0.9 and growth baseline 60 days
+come from native raccoon kits. Genes can affect growth duration. Both sexes
+grow into the stable adult type; no mates, pregnancy or birth system is added.
 
-Remove the mod only from a disposable test world after deleting the test cats.
-Persistent custom animal types can leave incompatible saved entities if the
-mod is removed from a valuable world. No valuable save is needed to evaluate
-this prototype.
+Native hand-feeding's initial inventory filter omits CatFood/Meat/Fish food
+categories. A cat-only context-menu event adds **Offer cat food** when hungry
+(native world-menu hunger threshold 0.1), offering fresh non-spice permitted
+solid food from inventory. It calls the existing native feeding callback and
+timed action, which handle consumption, stress and player acceptance. Other
+species and vanilla methods are unchanged. Ground/trough diet remains cat
+food, meat and fish. Pure CowMilk or AnimalMilk keeps vanilla fluid feeding;
+mixed/other milk is not claimed. Water remains a separate need.
 
-## Care and behavior
+The group reads **Cats**. Both types use native **Pet**, stress reduction,
+acceptance, Husbandry effects and cooldown. Cat-only player animation nodes
+reference native low-petting clips and completion events, including dwarf
+adult selection. No custom stress numbers, affection or companion AI exists.
+Exact hand/head alignment and menu integration need runtime acceptance.
 
-Cats start wild and flee people/zombies using native animal behavior. Catching
-uses native pickup and its carrying limits; pickup clears native wild status.
-Native player acceptance and husbandry interactions may still apply. No tame
-companion AI is supplied. Raccoon gait, crouches and timing remain visible;
-this is not a new feline animation library.
+Livestock zones encourage staying; they are not fences. Provide accessible
+food/water and close physical exits. Native stress/pathing can still matter.
 
-Place suitable food in a native feeding trough or on accessible ground inside
-a livestock zone. The allowlist is FoodType `CatFood`, `Meat`, `Fish`, plus the
-existing `Base.CatFoodBag`. Grass, hay, vegetables and broad `All` feeding are
-not included. Eligibility is based on the installed native consumer, not a
-new cooking/nutrition simulation. Raw/rotten-food handling follows native
-rules and needs acceptance testing.
+## Install and disposable test
 
-Optional milk uses native fluid handling: when hungry, offer a container of
-**pure Cow Milk (`CowMilk`) or pure Animal Milk (`AnimalMilk`)** through native
-hand feeding. The native consumer removes fluid and retains the vessel. Sheep
-milk, chocolate milk and mixtures are not claimed to work in this first scope.
-Setting the breed's `milkType` enables this consumer; cats have no udder,
-milk-production genes or milking capability. Milk can affect both hunger and
-thirst through native code, but water consumption and thirst remain enabled.
+Fully exit PZ before replacing files. Extract the install ZIP so the selected
+user-data mods directory contains `EwingsAnimals/42/mod.info` and sibling
+`EwingsAnimals/common/`. Back up the old mod outside active mods folders;
+replace only this mod, enable it and restart. Packaging does not install it.
 
-Vanilla's hand-feeding UI filters solid foods more narrowly than the underlying
-diet consumer. Solid cat food/meat/fish may therefore be absent from the hand
-menu; use ground/trough feeding for this prototype. No global menu override
-was added. Milk should take the native fluid branch; verify amount/container
-behavior in the test world before relying on it.
+In a disposable debug world, use the native animal spawn menu with either type
+above and breed `ewingsanimals_browntabby`, live/non-skeleton. Test a new adult
+and kitten with animal cheats/god/unlimited carry disabled and no rope. Check
+Pick Up, inventory/drop, food, native petting and diagnostic weight. See
+ACCEPTANCE.md for the full matrix. No custom spawn command is required.
 
-Livestock zones encourage ordinary staying and locate care resources. They
-are **not physical fences**. Hungry, thirsty or frightened animals may leave.
-Keep walls and exits physically closed for an indoor cat; open doors, windows,
-stairs, upper floors and panic escape require explicit tests. Adjacent zones
-can merge in native behavior. The prototype chooses a 12-square minimum zone
-area; that is a mod design choice, not a guarantee of indoor containment.
+Existing saved cats preserve wild status, stress, acceptance and possibly an
+invalid saved weight. A restart reloads definitions; it is not a certified
+repair of previously stored NaN data. No save migration or automatic data
+rewrite is included. Prefer a fresh disposable cat for first verification;
+if an older cat reports NaN, retain that diagnostic rather than editing a
+valuable save. Existing adults are not converted to kittens.
 
-## Explicit prototype choices and limits
-
-- One adult terminal stage; both sex flags false, no mate/baby references.
-- 3.5–5.5 native weight range; 4.5 carrying encumbrance; size range 0.95–1.05.
-- Hunger/thirst multipliers 0.0045/0.005, deliberately provisional balance.
-- No petting/rope attachment, attacks, fence climbing, grass eating, dung,
-  milk/wool/egg production or tracked-population additions.
-- Stair climbing, pickup, native transport and normal roaming are enabled.
-- Silent first version: no raccoon cries, borrowed cat audio or custom sounds.
-- Original living mesh/coat/icon also serve as basic corpse/decay fallbacks.
-  No skeleton, skinning/butchering assets or harvesting tables are supplied;
-  corpse/harvest behavior is unverified and outside initial acceptance.
-- Native `wildFleeTimeUntilDeadTimer=250` is retained explicitly. The engine's
-  wild-and-hurt escape lifecycle is not redesigned or described as pet health.
-- `alwaysFleeHumans`, wild status, stress and acceptance interact natively;
-  the exact post-capture temperament requires observation.
-
-The Assimp mesh import, native script parsing and Lua checks do not certify the
-game's renderer, loader integration, animation blending, saves or networking.
-Read the concrete test matrix in ACCEPTANCE.md before using the mod beyond a
-disposable world.
-
-## Reproduce offline work
-
-Use an already installed Blender and matching B42 installation. No downloads
-or pip packages are required. Set the `PZ_GAME_DIR` environment variable to your
-own Project Zomboid installation before running the tools. Use Blender's
-bundled Python and the installed game's JRE; no machine-specific path is required
-in the source. The Java probes compile Lua and import assets without booting a world.
-
-1. Run Blender with `--background --factory-startup --threads 4 --python tools/build_cat.py`.
-2. Run `tools/native_probes.py` with Blender's bundled Python to emit tiny local
-   JVM probes, then run `tools/validate_package.py` with that Python.
-3. Run Blender in background with `tools/check_deformation.py`.
-4. Before redistributing the source, run Blender in background with
-   `tools/sanitize_authoring.py` to remove local file metadata while checking
-   that the original geometry remains unchanged.
-5. Run `tools/package_release.py` with the bundled Python, then
-   `tools/audit_publication.py` to check the final archives.
-   Packaging strips textual/EXIF metadata from project PNGs without changing
-   their compressed pixel data.
-
-Only the source/staging tree is written. Native files are read for compatibility
-and remain unchanged; no game, save, server or Workshop operation is performed.
+Original mesh, coat, icon and packed Blender source are unchanged from 0.1.0.
+The source ZIP includes authoring assets, tools and verification reports;
+Blender/Python are not required to play. Raccoon gait/crouches and angular
+geometry remain visible. No native game artwork or motion payloads are bundled.
+Persistent custom entities require the mod; do not remove it from a valuable
+world containing cats without a backup. Rollback tests belong in disposable
+worlds. Multiplayer and save/reload acceptance remain pending.

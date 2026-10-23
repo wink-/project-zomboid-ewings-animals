@@ -1,27 +1,22 @@
-# Disposable-world acceptance — not yet run
+# Disposable-world acceptance for 0.1.2
 
-Use the exact target build and only Ewing's Animals first. Keep the world and
-user-data directory disposable. Capture version, enabled mods and test logs.
-Every row below is pending gameplay observation, even if offline checks pass.
+Offline checks are not gameplay or multiplayer certification. Fully restart
+after installation. Use a disposable world and only this mod initially.
 
-| Test | Required observation |
+| Test | Required observations |
 | --- | --- |
-| Load and native debug spawn | Cat type/breed listed; one live cat appears; no missing model/texture/bone/Lua errors. Native raccoons still spawn normally. |
-| Appearance | Original brown tabby at correct native scale/orientation; correct UVs, opaque coat, visible eyes and ears; no exploding mesh, mirrored limbs or detached parts. |
-| Motion | Observe full idle, walk, run, sit/lie, hit/death and transition blends from multiple angles; examine paws/tail, clipping and head tracking. Offline samples cover only four clips. |
-| Flee/catch | Approach walking/running, turn away, and try native pickup. Confirm skittishness and carrying behavior; inspect native wild/acceptance state after drop. |
-| No companion features | No added follow/command/attack menu or autonomous combat/rope behaviors; zero damage configuration holds. |
-| Food positive cases | Separately place existing cat food, meat and fish on accessible ground and in a food trough. Confirm hunger change and native partial-item consumption. |
-| Food negative cases | Grass, hay, fruit and vegetables do not become accepted merely because they are nearby. Observe rotten/raw handling; do not infer it from category matching. |
-| Milk/container | While hungry, offer pure CowMilk and pure AnimalMilk separately in supported fluid containers. Confirm menu, native action, finite fluid use and retained vessel. Empty/mixed/chocolate/sheep milk should not be assumed supported. |
-| Water | Cat still becomes thirsty and drinks native water independently. Test ground water container and water trough; milk is optional. |
-| House zone | Ground-floor closed room with resources: ordinary staying, panic from running/noise/zombies, closed/open door contrast, windows and inaccessible resources. Zone alone must not be presented as guaranteed containment. |
-| Floor separation | Stairs and an upstairs zone; verify resource discovery, floor boundaries, pathing and inability to escape closed physical exits. |
-| Adult only | Multiple adults remain terminal adults; no mating/kittens, dung, eggs, wool or milk production. |
-| Native lifecycle | Observe hunger/thirst stress and wild/hurt escape timers in disposable cases. Death/decay/harvesting are unverified; record errors and stop if native fallback fails. |
-| Save/reload | Save with a living world cat and with one carried as Base.Animal; reload, drop/pick up and inspect IDs/coat/age/stats. |
-| Existing/new regions | Confirm enabling does not generate uncontrolled populations in visited or new areas. No distributions are supplied. |
-| Multiplayer later | Separate disposable server/client with identical build and mod: authorized native debug spawn, ownership, movement, pickup/drop, milk/food use, container synchronization, reconnect and server save/restart. |
+| New adult, no cheats or rope | Native Pick Up appears. Diagnostic weight is finite and below Strength-based limit. Native action creates Base.Animal, equips hands, clears wild; drop and repeat. |
+| New kitten | Friendly domestic baseline, distinct type/name/scale. Native pickup without rope, drop, care and petting; stress can still produce flight. |
+| Adult fear comparison | Compare fresh raccoon sow/boar and cat under similar stress/acceptance/genetics. Same wild/flee/motions, no mod speed multiplier or acceptance threshold. |
+| Old adult | After restart inspect handling weight and logged native pickup/wild/attachment/cheat values. Previously saved NaN may remain; do not edit valuable saves or claim automatic repair. |
+| Menu failure | If Pick Up is missing, record the handling line and EwingsAnimals handling log. Native rope in animal-cheat mode does not establish a rope requirement. |
+| Food | While hunger >=0.1, fresh CatFoodBag, Meat and Fish appear in Offer cat food and use native consumption/acceptance effects. Rotten/spice, unrelated food and full animals excluded. Ground/trough care still works. |
+| Milk/water | Pure CowMilk and AnimalMilk use native fluid menu/action, consume finite fluid and retain vessel. Water independent; mixed/other milk unclaimed. |
+| Petting | Cats group, Pet, normal/dwarf adult and kitten player alignment, native stress/cooldown/acceptance. Interrupt action and verify movement unblocks. |
+| Failure paths | No native pickup when too heavy, no world animal, failed adjacency or distance >=3. No bypass. No rope needed on ordinary valid small animals. |
+| Growth | Kitten grows into stable adult through native 60-day baseline adjusted by genes. Adult remains terminal; no mates/births/automatic populations. |
+| Home | Accessible resources in a closed house; compare open/closed exits and panic. Zone does not guarantee containment. |
+| Save/reload | New adult/kitten in world and carried; restart, drop/pickup, age/coat/stress/acceptance persist. |
+| Multiplayer later | Separate disposable server/client with identical build/mod; native ownership, food/fluid sync, pickup/drop, petting, growth, reconnect and server save/reload. |
 
-Roll back by removing the disposable world/user-data directory and staged test
-mod only. Do not use these tests to experiment with valuable saved worlds.
+No valuable save is needed. Preserve failures and relevant errors for diagnosis.

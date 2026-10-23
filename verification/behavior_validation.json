@@ -1,0 +1,37 @@
+{
+  "version": "0.1.2",
+  "all_passed": true,
+  "native_java_definitions": {
+    "exit_code": 0,
+    "stdout": "raccoonsow\ncanBePicked\ntrue\ncanBeAttached\nfalse\nwild\ntrue\nalwaysFleeHumans\ntrue\nminWeight\n9.0\nmaxWeight\n14.0\nraccoonboar\ncanBePicked\ntrue\ncanBeAttached\nfalse\nwild\ntrue\nalwaysFleeHumans\ntrue\nminWeight\n10.0\nmaxWeight\n15.0\nraccoonkit\ncanBePicked\ntrue\ncanBeAttached\nfalse\nwild\ntrue\nalwaysFleeHumans\ntrue\nminWeight\n1.0\nmaxWeight\n8.0\newingsanimals_catadult\ncanBePicked\ntrue\ncanBeAttached\nfalse\nwild\ntrue\nalwaysFleeHumans\ntrue\nminWeight\n3.5\nmaxWeight\n5.5\newingsanimals_kitten\ncanBePicked\ntrue\ncanBeAttached\nfalse\nwild\nfalse\nalwaysFleeHumans\nfalse\nminWeight\n1.0\nmaxWeight\n2.5\nANIMAL_DEFINITIONS_PARSE_OK",
+    "stderr": ""
+  },
+  "native_jvm_weight_regression": {
+    "exit_code": 0,
+    "stdout": "duration=0\ntrue\nNaN\nfalse\nduration=60\nfalse\n3.5\ntrue",
+    "stderr": ""
+  },
+  "cat_menu_stub_execution": {
+    "exit_code": 0,
+    "stdout": "LUA_EXECUTION_OK",
+    "stderr": ""
+  },
+  "kitten_xml_parser": {
+    "exit_code": 0,
+    "stdout": "ANIM_NODE_PARSE_OK",
+    "stderr": "Failed to load file Guid table."
+  },
+  "native_raccoon_definition_sha256": "55185497017826ae3a1d3f3e980f963de29644797ea4d992d40ea9e483ca502c",
+  "pickup_override_added": false,
+  "rope_required": false,
+  "acceptance_override_added": false,
+  "adult_ids_preserved": true,
+  "pickup_definition_bug": "0.1.1 adult stage duration zero causes native initWeight division by zero. At minAge, infinity times zero becomes NaN and fails weight < pickup limit. Set duration 60, matching terminal native raccoon adults.",
+  "live_missing_pickup_cause_confirmed": false,
+  "limits": [
+    "Definition arithmetic bug reproduced offline; affected live cat weight not read.",
+    "No live world or multiplayer was run.",
+    "Menu event integration, native inventory conversion, kitten growth and existing saved cats require disposable-world testing.",
+    "Kittens reuse scaled original adult geometry; no juvenile-specific mesh is claimed."
+  ]
+}

@@ -1,17 +1,24 @@
 """Create deterministic, inspected source/install ZIPs. Never installs."""
 from pathlib import Path,PurePosixPath
-import io,json,zipfile,hashlib,shutil
+import io,json,zipfile,hashlib,shutil,re
 from sanitize_pngs import sanitize_tree
 from normalize_text import normalize_tree
-ROOT=Path(__file__).resolve().parents[1];MOD=ROOT/'stage/EwingsAnimals';OUT=ROOT/'release';OUT.mkdir(exist_ok=True)
-VER='0.1.0';DOCS=['README.md','ACCEPTANCE.md','ASSET_PROVENANCE.md','CHANGELOG.md']
+ROOT=Path(__file__).resolve().parents[1];MOD=ROOT/'stage/EwingsAnimals'
+VER=re.search(r'(?m)^version=(.+)$',(MOD/'42/mod.info').read_text()).group(1).strip()
+OUT=ROOT/'release'/VER;OUT.mkdir(parents=True,exist_ok=True)
+DOCS=['README.md','ACCEPTANCE.md','ASSET_PROVENANCE.md','CHANGELOG.md']
 sanitize_tree(ROOT)
 normalize_tree(ROOT)
 offline=json.loads((ROOT/'verification/offline_validation.json').read_text());rig=json.loads((ROOT/'verification/rig_validation.json').read_text());art=json.loads((ROOT/'verification/art_validation.json').read_text())
+petting=json.loads((ROOT/'verification/petting_validation.json').read_text())
+behavior=json.loads((ROOT/'verification/behavior_validation.json').read_text())
+assert behavior['all_passed'] and behavior['version']==VER
+assert petting['all_passed'] and petting['version']==VER
+assert petting['native_pickup_stub_execution']['exit_code']==0
 assert rig['all_passed'] and rig['sample_count']==20
 assert offline['checks']['native_lua_definition_execution']['exit_code']==0
 assert offline['checks']['native_mesh_import']['exit_code']==0
-summary=f'''# Offline validation — Ewing's Animals {VER}
+summary=f'''# Offline validation - Ewing's Animals {VER}
 
 Target: B42.21 / Steam25485521, Windows.
 
@@ -19,8 +26,16 @@ Target: B42.21 / Steam25485521, Windows.
 - At most {art['max_influences']} normalized bone influences per vertex.
 - Installed native Assimp importer: passed; no embedded animation clips.
 - Installed native model-script parser: passed.
-- Installed native Lua compiler: both mod scripts passed.
-- Installed Kahlua execution: additive registration/adult/diet/milk/scope assertions passed.
+- Installed native Lua compiler: all runtime Lua scripts passed.
+- Installed Kahlua execution: additive adult/kitten registration, growth, diet, milk and scope assertions passed.
+- Cat-only petting XML parsed natively; native action delegation/cleanup and normal/dwarf selection assertions passed.
+- Native petting supplies its own stress effect and cooldown; no custom stress values or global overrides.
+- Native pickup path/action/inventory conversion inspected and stub-tested.
+- Actual Java animal-definition loader parsed native raccoons and both cats.
+- Installed JVM reproduced NaN weight from zero stage duration and finite pickup-eligible weight with duration 60.
+- Cat-only food menu and kitten XML parser checks passed; live menu integration remains pending.
+- No pickup/acceptance bypass or save migration was added.
+- Original mesh, texture, icon and Blender source match v0.1.0 byte for byte.
 - Four native motion clips sampled at five phases each: {rig['sample_count']} offline poses passed.
 - Independent linear skinning comparison maximum error: {rig['max_lbs_error']:.10f} model units.
 - Reference hashes match the baseline; no native files were changed.
@@ -64,7 +79,7 @@ install=entries_from(MOD.rglob('*'),'EwingsAnimals',MOD)
 assert any(n=='EwingsAnimals/42/mod.info' for n,d in install)
 assert any(n=='EwingsAnimals/common/README.txt' for n,d in install)
 assert not any(n.lower().endswith(('.dll','.jar','.class','.blend','.pyc')) for n,d in install)
-reports=['art_validation.json','rig_validation.json','offline_validation.json','native_reference_hashes.json']
+reports=['art_validation.json','rig_validation.json','offline_validation.json','native_reference_hashes.json','petting_validation.json','behavior_validation.json']
 sourcepaths=[ROOT/n for n in DOCS+['VALIDATION.md','.gitignore']]
 sourcepaths+=list((ROOT/'tools').glob('*.py'))+[ROOT/'art/EwingsCat_Adult.blend']
 sourcepaths+=list((ROOT/'previews').glob('*.png'))+[ROOT/'verification'/n for n in reports]
@@ -74,7 +89,7 @@ assert len({n for n,d in source})==len(source)
 # Principal native source hashes must not appear as archived file payloads.
 native=json.loads((ROOT/'verification/native_reference_hashes.json').read_text());nativehash={v['before'] for v in native.values()}
 assert not any(hashlib.sha256(d).hexdigest() in nativehash for n,d in source)
-manifest={'version':VER,'archives':[make('EwingsAnimals-0.1.0-prototype-install.zip',install),make('EwingsAnimals-0.1.0-prototype-source.zip',source)],'gameplay_tested':False,'multiplayer_tested':False,'installed':False}
+manifest={'version':VER,'archives':[make(f'EwingsAnimals-{VER}-prototype-install.zip',install),make(f'EwingsAnimals-{VER}-prototype-source.zip',source)],'gameplay_tested':False,'multiplayer_tested':False,'installed':False,'publication_pending':True}
 shutil.copyfile(ROOT/'previews/EwingsAnimals_cat_preview.png',OUT/'EwingsAnimals-cat-preview.png')
 shutil.copyfile(ROOT/'previews/01_three_quarter.png',OUT/'EwingsAnimals-cat-three-quarter.png')
 shutil.copyfile(ROOT/'VALIDATION.md',OUT/'VALIDATION.md')

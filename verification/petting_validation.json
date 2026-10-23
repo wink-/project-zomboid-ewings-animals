@@ -1,0 +1,81 @@
+{
+  "version": "0.1.2",
+  "all_passed": true,
+  "group_translation": "Cats",
+  "native_xml_parser": {
+    "exit_code": 0,
+    "stdout": "ANIM_NODE_PARSE_OK",
+    "stderr": "Failed to load file Guid table."
+  },
+  "native_action_stub_execution": {
+    "exit_code": 0,
+    "stdout": "LUA_EXECUTION_OK",
+    "stderr": ""
+  },
+  "native_pickup_stub_execution": {
+    "exit_code": 0,
+    "stdout": "LUA_EXECUTION_OK",
+    "stderr": ""
+  },
+  "native_pickup_gate": "canBePicked and weight < 40 + 7 * Strength (or native god/unlimited-carry exception); no acceptance threshold",
+  "native_pickup_gate_method_sha256": "892c19db5c59163e1e21ea4cf7a6534f80d93c0d94254e895e67f45e1d36a001",
+  "native_pickup_gate_references": [
+    "zombie/characters/IsoGameCharacter.getPerkLevel.(Lzombie/characters/skills/PerkFactory$Perk;)I",
+    "zombie/characters/IsoGameCharacter.isGodMod.()Z",
+    "zombie/characters/IsoGameCharacter.isUnlimitedCarry.()Z",
+    "zombie/characters/animals/AnimalDefinitions.canBePicked.Z",
+    "zombie/characters/animals/IsoAnimal.adef.Lzombie/characters/animals/AnimalDefinitions;",
+    "zombie/characters/animals/IsoAnimal.getData.()Lzombie/characters/animals/datas/AnimalData;",
+    "zombie/characters/animals/datas/AnimalData.getWeight.()F",
+    "zombie/characters/skills/PerkFactory$Perks.Strength.Lzombie/characters/skills/PerkFactory$Perk;"
+  ],
+  "pickup_override_added": false,
+  "reported_live_pickup_issue_reproduced": false,
+  "native_pet_method_bytecode_sha256": "768b053fcff713238c6c54e0b66056cf1b2664e5c294dfa270b9e2545e32b295",
+  "native_pet_method_references": [
+    "java/lang/Math.min.(FF)F",
+    "zombie/characters/IsoGameCharacter$XP.AddXP.(Lzombie/characters/skills/PerkFactory$Perk;F)V",
+    "zombie/characters/IsoPlayer.getPerkLevel.(Lzombie/characters/skills/PerkFactory$Perk;)I",
+    "zombie/characters/IsoPlayer.getXp.()Lzombie/characters/IsoGameCharacter$XP;",
+    "zombie/characters/IsoPlayer.petAnimal.()V",
+    "zombie/characters/animals/IsoAnimal.changeStress.(F)V",
+    "zombie/characters/animals/IsoAnimal.getAcceptanceLevel.(Lzombie/characters/IsoPlayer;)F",
+    "zombie/characters/animals/IsoAnimal.petTimer.F",
+    "zombie/characters/animals/IsoAnimal.setDebugAcceptance.(Lzombie/characters/IsoPlayer;F)V",
+    "zombie/characters/skills/PerkFactory$Perks.Husbandry.Lzombie/characters/skills/PerkFactory$Perk;",
+    "zombie/core/random/Rand.Next.(II)I",
+    "zombie/network/GameClient.client.Z",
+    "zombie/network/GameServer.addXp.(Lzombie/characters/IsoPlayer;Lzombie/characters/skills/PerkFactory$Perk;F)V",
+    "zombie/network/GameServer.server.Z"
+  ],
+  "native_low_pet_clips": [
+    "Bob_PetPiglet_Large",
+    "Bob_PetPiglet",
+    "Bob_PetPiglet_Small"
+  ],
+  "normal_and_dwarf_adult_selection": true,
+  "native_distance_boundary_and_action_cleanup": true,
+  "native_effect_delegation": true,
+  "custom_stress_values": false,
+  "global_overrides": false,
+  "unchanged_original_asset_sha256": {
+    "models_X/Skinned/EwingsCat_Adult.x": "74b509201743e0f0ee97a7b6ed17bd1122d5d62c3743bed6d939ae4add07b05e",
+    "textures/Body/EwingsCat_BrownTabby.png": "94aeb9068518079c03155553000bdfe503cf8f3943b956af7df5c3422bf61bfb",
+    "textures/Item_EwingsCat_Adult.png": "e179882612c664c6f871c673890f4743730abf0254751a46b82b265dd2d6835a",
+    "art/EwingsCat_Adult.blend": "3d80434009270bdc914e08ea5c1f3836bae50f12b6c8494def1dd04a81c3387a"
+  },
+  "native_reference_hashes": {
+    "media/lua/shared/TimedActions/Animals/ISPetAnimal.lua": "e303c6654963b90a0bb3200f674dd78411c6bfa2d17c52d48b4fad914bf2e0a0",
+    "media/lua/client/ISUI/Animal/ISAnimalContextMenu.lua": "809223fae0f268bedc203188bfdeb4b2cda0f83ad124f9dc55c7e530e39f0731",
+    "media/AnimSets/player/petanimal/defaultpet.xml": "efa03e60fcf3d075ef86375e303fbbbd84839f40bbb6f491edf1e921260e21a0",
+    "media/AnimSets/player/petanimal/petraccoonboar.xml": "b2a9e6804ee0e4b15ba9b9ced923b354609bdc6c70b8b6f525824ed707a0dbc4",
+    "media/lua/shared/TimedActions/Animals/ISPickupAnimal.lua": "bdb20f4e1a3fce56e4c55e3173943787db48fa709ffb0ca619b43d25481d5ab3"
+  },
+  "limits": [
+    "Lua action assertions use stubs, not a saved animal or game world.",
+    "Stress/cooldown effects are delegated to the inspected native engine method, not reimplemented or gameplay-tested.",
+    "The reported live pickup failure was not reproduced; distinguish a missing menu option, failed path/action or a fleeing animal before changing behavior.",
+    "Live hand/head alignment, existing-cat reload and multiplayer require runtime acceptance.",
+    "Installed files are not updated by this checker."
+  ]
+}

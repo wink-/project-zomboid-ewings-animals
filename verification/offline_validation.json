@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.2",
   "target": "B42.21 / Steam25485521",
   "checks": {
     "geometry": {
@@ -14,6 +14,11 @@
     "native_mesh_import": {
       "exit_code": 0,
       "stdout": "MESHES\n1\nVERTICES\n15786\nFACES\n5262\nBONES\n25\nANIMATIONS\n0",
+      "stderr": ""
+    },
+    "lua_compile_EwingsAnimals_Feeding.lua": {
+      "exit_code": 0,
+      "stdout": "LUA_COMPILE_OK",
       "stderr": ""
     },
     "lua_compile_EwingsAnimals_Avatar.lua": {
@@ -49,7 +54,7 @@
   },
   "limits": [
     "Assimp importer and script/Lua parsers are isolated asset checks, not game rendering.",
-    "No gameplay, save/reload or multiplayer tests were run.",
+    "No gameplay, save/reload or multiplayer tests were run by these checks.",
     "Milk configuration and native consumption path are statically grounded; actual feeding needs disposable-world acceptance."
   ]
 }

@@ -53,19 +53,29 @@ harness='AnimalDefinitions={animals={nativeSentinel={unchanged=true}}}; IsoDirec
 local a=AnimalDefinitions.animals.ewingsanimals_catadult
 assert(AnimalDefinitions.animals.nativeSentinel.unchanged)
 local count=0;for k,v in pairs(AnimalDefinitions.animals) do count=count+1 end
-assert(count==2 and a.bodyModel=="EwingsAnimals_CatAdult")
+assert(count==3 and a.bodyModel=="EwingsAnimals_CatAdult")
 assert(a.group=="ewingsanimals_cat" and a.animset=="raccoon")
 assert(a.stages.ewingsanimals_catadult.nextStage==nil)
-assert(a.mate==nil and a.babyType==nil and not a.male and not a.female)
+assert(a.mate==nil and a.babyType=="ewingsanimals_kitten" and not a.male and not a.female)
+assert(a.canBePet)
 assert(a.eatTypeTrough=="CatFood,Meat,Fish,Base.CatFoodBag")
 assert(a.feedByHandType=="CatFood,Meat,Fish,Base.CatFoodBag,CowMilk,AnimalMilk")
 assert(a.breeds.ewingsanimals_browntabby.milkType=="CowMilk")
-assert(a.canBePicked and a.alwaysFleeHumans and a.canClimbStairs)
+assert(a.canBePicked and a.alwaysFleeHumans and a.wild and a.canClimbStairs)
+assert(a.stages.ewingsanimals_catadult.ageToGrow==60)
 assert(not a.eatGrass and not a.canBeMilked and not a.udder)
 assert(not a.attackBack and not a.attackIfStressed and a.baseDmg==0)
 assert(a.dung==nil and a.dungChancePerDay==0)
 assert(a.bodyModelSkel==nil and a.textureSkeleton==nil)
 assert(AnimalAvatarDefinition.ewingsanimals_catadult.avatarWidth==200)
+local k=AnimalDefinitions.animals.ewingsanimals_kitten
+assert(k and k.stages.ewingsanimals_kitten.nextStage=="ewingsanimals_catadult")
+assert(k.stages.ewingsanimals_kitten.nextStageMale=="ewingsanimals_catadult")
+assert(k.stages.ewingsanimals_kitten.ageToGrow==60 and k.minAge==0)
+assert(k.canBePicked and k.canBePet and not k.canBeAttached and not a.canBeAttached)
+assert(not k.wild and not k.alwaysFleeHumans and k.minSize==0.5 and k.maxSize==0.9)
+assert(k.mate==nil and k.minBaby==0 and k.maxBaby==0)
+assert(k.bodyModel==a.bodyModel and k.breeds==a.breeds)
 '''
 hp=OUT/'definition_assertions.lua';hp.write_text(harness);run('native_lua_definition_execution','NativeLuaExec',hp)
 assert 'id=EwingsAnimals' in (MOD/'42/mod.info').read_text()
@@ -74,8 +84,9 @@ assert (MEDIA/'textures/Body/EwingsCat_BrownTabby.png').is_file()
 assert (MEDIA/'textures/Item_EwingsCat_Adult.png').is_file()
 for path in MEDIA.rglob('*.lua'):
     t=path.read_text()
-    assert not re.search(r'Events\.|OnTick|OnCreatePlayer|addAnimal\(|MigrationGroupDefinitions|TrapAnimals',t),'Unrequested automatic spawn/event hook'
+    assert not re.search(r'Events\.|OnTick|OnCreatePlayer|addAnimal\(|MigrationGroupDefinitions|TrapAnimals',t.replace('Events.OnFillWorldObjectContextMenu.Add(fill)','')),'Unrequested automatic spawn/event hook'
 results['scope']={'new_species_only':True,'automatic_spawns':False,'companion_systems':False,'native_references_unchanged':True,'installation_performed':False,'game_launched':False,'runtime_certified':False,'multiplayer_certified':False}
-report={'version':'0.1.0','target':'B42.21 / Steam25485521','checks':results,'limits':['Assimp importer and script/Lua parsers are isolated asset checks, not game rendering.','No gameplay, save/reload or multiplayer tests were run.','Milk configuration and native consumption path are statically grounded; actual feeding needs disposable-world acceptance.']}
+version=re.search(r'(?m)^version=(.+)$',(MOD/'42/mod.info').read_text()).group(1).strip()
+report={'version':version,'target':'B42.21 / Steam25485521','checks':results,'limits':['Assimp importer and script/Lua parsers are isolated asset checks, not game rendering.','No gameplay, save/reload or multiplayer tests were run by these checks.','Milk configuration and native consumption path are statically grounded; actual feeding needs disposable-world acceptance.']}
 (OUT/'offline_validation.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))

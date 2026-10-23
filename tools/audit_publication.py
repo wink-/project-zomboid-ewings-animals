@@ -1,7 +1,9 @@
 """Check final publication ZIPs for excluded payloads and local paths."""
 from pathlib import Path
 import zipfile,re,json,hashlib
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'release';checks=[]
+ROOT=Path(__file__).resolve().parents[1]
+version=re.search(r'(?m)^version=(.+)$',(ROOT/'stage/EwingsAnimals/42/mod.info').read_text()).group(1).strip()
+OUT=ROOT/'release'/version;checks=[]
 for path in sorted(OUT.glob('*.zip')):
     with zipfile.ZipFile(path) as z:
         for name in z.namelist():

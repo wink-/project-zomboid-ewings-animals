@@ -1,6 +1,6 @@
 name=Ewing's Animals (Cat Prototype)
 id=EwingsAnimals
-description=Original adult brown tabby cat using native B42 animal mechanics. Debug-spawn prototype; no natural spawns or companion systems. Offline validated; gameplay acceptance pending.
-version=0.1.0
+description=Original adult and kitten brown tabby cats using native B42 animal mechanics. Debug-spawn prototype; no natural spawns or companion systems. Offline validated; gameplay acceptance pending.
+version=0.1.2
 versionMin=42.21
 author=Ewing

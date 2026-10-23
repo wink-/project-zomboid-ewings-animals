@@ -68,3 +68,7 @@ c+=e.label('LUA_EXECUTION_OK')+b'\xb1';e.write(c)
 e=Emitter('NativeScriptProbe')
 c=e.ins(187,e.cls('java/lang/String'))+b'\x59'+e.ins(187,e.cls('java/io/FileInputStream'))+b'\x59\x2a\x03\x32'+e.call('java/io/FileInputStream','<init>','(Ljava/lang/String;)V',183)+e.call('java/io/FileInputStream','readAllBytes','()[B',182)+e.call('java/lang/String','<init>','([B)V',183)
 c+=e.call('zombie/scripting/ScriptParser','parse','(Ljava/lang/String;)Lzombie/scripting/ScriptParser$Block;')+b'\x57'+e.label('MODEL_SCRIPT_PARSE_OK')+b'\xb1';e.write(c)
+
+e=Emitter('NativeAnimNodeProbe')
+c=b'\x2a\x03\x32'+e.call('zombie/core/skinnedmodel/advancedanimation/AnimNode','Parse','(Ljava/lang/String;)Lzombie/core/skinnedmodel/advancedanimation/AnimNode;')
+c+=e.call('java/util/Objects','requireNonNull','(Ljava/lang/Object;)Ljava/lang/Object;')+b'\x57'+e.label('ANIM_NODE_PARSE_OK')+b'\xb1';e.write(c)
