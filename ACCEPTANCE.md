@@ -1,4 +1,4 @@
-# Disposable-world acceptance for 0.1.2
+# Disposable-world acceptance for 0.1.3
 
 Offline checks are not gameplay or multiplayer certification. Fully restart
 after installation. Use a disposable world and only this mod initially.

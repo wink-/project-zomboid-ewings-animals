@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "target": "B42.21 / Steam25485521",
   "checks": {
     "geometry": {

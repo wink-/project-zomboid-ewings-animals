@@ -2,7 +2,7 @@
   "IGUI_AnimalType_ewingsanimals_catadult": "Cat",
   "IGUI_Animal_Group_ewingsanimals_cat": "Cats",
   "IGUI_Breed_ewingsanimals_browntabby": "Brown tabby",
-  "IGUI_AnimalUI_Info_ewingsanimals_catadult": "<LINE> <LINE> Native animal care, stress and acceptance; no companion commands. New cats use domestic fear behavior. Offer fresh cat food, meat or fish when hungry. Pure Cow Milk or Animal Milk uses native feeding; water remains separate. Livestock zones are not fences. No breeding or automatic spawns.",
+  "IGUI_AnimalUI_Info_ewingsanimals_catadult": "<LINE> <LINE> Native animal care, stress and acceptance; no companion commands. Adults retain native raccoon fear behavior. Offer fresh cat food, meat or fish when hungry. Pure Cow Milk or Animal Milk uses native feeding; water remains separate. Livestock zones are not fences. No breeding or automatic spawns.",
   "IGUI_AnimalType_ewingsanimals_kitten": "Kitten",
-  "IGUI_AnimalUI_Info_ewingsanimals_kitten": "<LINE> <LINE> Native animal care, stress and acceptance; no companion commands. New cats use domestic fear behavior. Offer fresh cat food, meat or fish when hungry. Pure Cow Milk or Animal Milk uses native feeding; water remains separate. Livestock zones are not fences. No breeding or automatic spawns. Kittens grow into the adult type using the native 60-day stage baseline; this prototype reuses the original cat model at smaller scale."
+  "IGUI_AnimalUI_Info_ewingsanimals_kitten": "<LINE> <LINE> Native animal care, stress and acceptance; no companion commands. Kittens start with native domestic fear behavior. Offer fresh cat food, meat or fish when hungry. Pure Cow Milk or Animal Milk uses native feeding; water remains separate. Livestock zones are not fences. No breeding or automatic spawns. Kittens grow into the adult type using the native 60-day stage baseline; this prototype reuses the original cat model at smaller scale."
 }

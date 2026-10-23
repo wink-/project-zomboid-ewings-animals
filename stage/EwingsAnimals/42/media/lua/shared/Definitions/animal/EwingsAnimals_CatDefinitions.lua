@@ -1,4 +1,4 @@
--- Ewing's Animals 0.1.2. Additive original cats; native care and handling.
+-- Ewing's Animals 0.1.3. Additive original cats; native care and handling.
 AnimalDefinitions = AnimalDefinitions or {}
 AnimalDefinitions.animals = AnimalDefinitions.animals or {}
 AnimalDefinitions.stages = AnimalDefinitions.stages or {}

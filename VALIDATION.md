@@ -1,4 +1,4 @@
-# Offline validation - Ewing's Animals 0.1.2
+# Offline validation - Ewing's Animals 0.1.3
 
 Target: B42.21 / Steam25485521, Windows.
 

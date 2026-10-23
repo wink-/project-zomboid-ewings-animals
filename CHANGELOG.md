@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 - final help-text correction
+
+- Correct the adult/kitten help text: adults keep raccoon fear behavior; kittens use domestic fear behavior. No gameplay or asset changes from 0.1.2.
+
 ## 0.1.2 - behavior and pickup prototype
 
 - Repair zero adult growth duration that can produce NaN weight and hide native pickup; use native raccoon adult duration 60 while keeping the adult terminal.

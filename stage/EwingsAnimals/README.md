@@ -1,4 +1,4 @@
-# Ewing's Animals 0.1.2 prototype
+# Ewing's Animals 0.1.3 prototype
 
 Standalone mod ID `EwingsAnimals`; target inspected B42.21 / Steam25485521,
 Windows. Original brown tabby cats using native raccoon motions and native
