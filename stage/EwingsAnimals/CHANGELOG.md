@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.4 - icon candidate, installation/publication pending
+
+- Fix direct animal icon lookup using complete loose-PNG paths rather than unregistered bare texture-pack names.
+- Render original transparent adult and kitten icons from the existing original Blender source, with consistent padding and small-scale previews.
+- No native Base.Animal or UI override, behavior/weight/growth change, installation or publication.
+- Record the user-confirmed kitten pickup on 0.1.3 narrowly; final icon runtime acceptance remains pending.
+
 ## 0.1.3 - final help-text correction
 
 - Correct the adult/kitten help text: adults keep raccoon fear behavior; kittens use domestic fear behavior. No gameplay or asset changes from 0.1.2.

@@ -5,7 +5,7 @@ def normalize_tree(root):
     paths=[root/n for n in ['.gitignore','README.md','ACCEPTANCE.md','ASSET_PROVENANCE.md','CHANGELOG.md','VALIDATION.md']]
     paths+=list((root/'tools').glob('*.py'))
     paths+=[p for p in (root/'stage').rglob('*') if p.is_file() and (p.suffix.lower() in {'.lua','.json','.txt','.x','.xml','.md','.info'})]
-    paths+=[root/'verification'/n for n in ['art_validation.json','rig_validation.json','offline_validation.json','native_reference_hashes.json','petting_validation.json','behavior_validation.json']]
+    paths+=[root/'verification'/n for n in ['art_validation.json','rig_validation.json','offline_validation.json','native_reference_hashes.json','petting_validation.json','behavior_validation.json','icon_validation.json']]
     for path in paths:
         if not path.exists():continue
         b=path.read_bytes()

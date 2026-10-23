@@ -1,0 +1,144 @@
+{
+  "version": "0.1.4",
+  "all_passed": true,
+  "cause": "Bare unregistered pack-style icon names passed directly to Texture.getSharedTexture; loose PNG lookup needs complete media/textures path and extension.",
+  "native_breed_parser": {
+    "exit_code": 0,
+    "stdout": "invIconMale\nmedia/textures/Item_EwingsCat_Adult.png\ninvIconFemale\nmedia/textures/Item_EwingsCat_Adult.png\ninvIconBaby\nmedia/textures/Item_EwingsCat_Kitten.png\ninvIconMaleDead\nmedia/textures/Item_EwingsCat_Adult.png\ninvIconFemaleDead\nmedia/textures/Item_EwingsCat_Adult.png\ninvIconBabyDead\nmedia/textures/Item_EwingsCat_Kitten.png",
+    "stderr": ""
+  },
+  "native_hand_render_fragment": {
+    "exit_code": 0,
+    "stdout": "LUA_EXECUTION_OK",
+    "stderr": ""
+  },
+  "breed_paths": {
+    "invIconMale": "media/textures/Item_EwingsCat_Adult.png",
+    "invIconFemale": "media/textures/Item_EwingsCat_Adult.png",
+    "invIconBaby": "media/textures/Item_EwingsCat_Kitten.png",
+    "invIconMaleDead": "media/textures/Item_EwingsCat_Adult.png",
+    "invIconFemaleDead": "media/textures/Item_EwingsCat_Adult.png",
+    "invIconBabyDead": "media/textures/Item_EwingsCat_Kitten.png"
+  },
+  "icons": {
+    "Adult": {
+      "file": "stage/EwingsAnimals/42/media/textures/Item_EwingsCat_Adult.png",
+      "sha256": "31951cba62b17e447a3b6e9d9c61d54631e127be2de5e64295ea5822bb467ef0",
+      "size": [
+        128,
+        128
+      ],
+      "alpha_bounds_exclusive": [
+        12,
+        29,
+        116,
+        99
+      ],
+      "opaque_pixels": 3126,
+      "median_visible_luminance": 0.3447933333333333,
+      "small_sizes": {
+        "27": {
+          "nonempty_pixels": 147
+        },
+        "32": {
+          "nonempty_pixels": 208
+        },
+        "36": {
+          "nonempty_pixels": 261
+        },
+        "48": {
+          "nonempty_pixels": 465
+        },
+        "54": {
+          "nonempty_pixels": 587
+        },
+        "72": {
+          "nonempty_pixels": 1043
+        },
+        "96": {
+          "nonempty_pixels": 1842
+        }
+      }
+    },
+    "Kitten": {
+      "file": "stage/EwingsAnimals/42/media/textures/Item_EwingsCat_Kitten.png",
+      "sha256": "4bdad38234dd3468d2015a4d36a5136feef34ed13d86b7da0bfd7b7c7602ebc0",
+      "size": [
+        128,
+        128
+      ],
+      "alpha_bounds_exclusive": [
+        18,
+        12,
+        109,
+        116
+      ],
+      "opaque_pixels": 4729,
+      "median_visible_luminance": 0.3952894117647059,
+      "small_sizes": {
+        "27": {
+          "nonempty_pixels": 212
+        },
+        "32": {
+          "nonempty_pixels": 308
+        },
+        "36": {
+          "nonempty_pixels": 389
+        },
+        "48": {
+          "nonempty_pixels": 691
+        },
+        "54": {
+          "nonempty_pixels": 874
+        },
+        "72": {
+          "nonempty_pixels": 1553
+        },
+        "96": {
+          "nonempty_pixels": 2761
+        }
+      }
+    }
+  },
+  "native_frame_metadata": {
+    "Item_Raccoon": {
+      "trimmed_size": [
+        32,
+        32
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "original_size": [
+        32,
+        32
+      ]
+    },
+    "Item_Raccoon_Kit": {
+      "trimmed_size": [
+        29,
+        26
+      ],
+      "offset": [
+        2,
+        4
+      ],
+      "original_size": [
+        32,
+        32
+      ]
+    }
+  },
+  "behavior_preserved_from_0_1_3": true,
+  "global_base_animal_or_ui_override": false,
+  "ui_preview": "previews/EwingsAnimals_hand_icons_preview.png",
+  "user_reported_kitten_pickup_on_0_1_3": true,
+  "runtime_icon_tested": false,
+  "multiplayer_tested": false,
+  "limits": [
+    "Native breed parser and hand draw fragment use isolated execution, not a rendered game UI.",
+    "GPU texture upload and mod VFS loading require a restarted disposable game test.",
+    "Already held items may need drop/pickup after restart for native icon initialization."
+  ]
+}

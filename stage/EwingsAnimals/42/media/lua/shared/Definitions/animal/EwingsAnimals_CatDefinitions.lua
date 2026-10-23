@@ -1,4 +1,4 @@
--- Ewing's Animals 0.1.3. Additive original cats; native care and handling.
+-- Ewing's Animals 0.1.4. Additive original cats; native care and handling.
 AnimalDefinitions = AnimalDefinitions or {}
 AnimalDefinitions.animals = AnimalDefinitions.animals or {}
 AnimalDefinitions.stages = AnimalDefinitions.stages or {}
@@ -30,10 +30,10 @@ local breeds = {
         name = coat,
         texture = "EwingsCat_BrownTabby", textureMale = "EwingsCat_BrownTabby",
         rottenTexture = "EwingsCat_BrownTabby",
-        invIconMale = "Item_EwingsCat_Adult", invIconFemale = "Item_EwingsCat_Adult",
-        invIconBaby = "Item_EwingsCat_Adult",
-        invIconMaleDead = "Item_EwingsCat_Adult", invIconFemaleDead = "Item_EwingsCat_Adult",
-        invIconBabyDead = "Item_EwingsCat_Adult",
+        invIconMale = "media/textures/Item_EwingsCat_Adult.png", invIconFemale = "media/textures/Item_EwingsCat_Adult.png",
+        invIconBaby = "media/textures/Item_EwingsCat_Kitten.png",
+        invIconMaleDead = "media/textures/Item_EwingsCat_Adult.png", invIconFemaleDead = "media/textures/Item_EwingsCat_Adult.png",
+        invIconBabyDead = "media/textures/Item_EwingsCat_Kitten.png",
         -- Native milk-container consumer accepts this pure fluid or AnimalMilk.
         -- Does not give cats udders/milk production: female/milk genes are absent.
         milkType = "CowMilk",

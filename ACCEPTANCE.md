@@ -1,10 +1,11 @@
-# Disposable-world acceptance for 0.1.3
+# Disposable-world acceptance for 0.1.4
 
 Offline checks are not gameplay or multiplayer certification. Fully restart
 after installation. Use a disposable world and only this mod initially.
 
 | Test | Required observations |
 | --- | --- |
+| Held/inventory icons | Fresh adult and kitten: inventory entry and both hand circles show correct original icon on dark UI. Test sidebar sizes 48/64/96/128, drop/pickup and save/reload. Already held items may need drop/pickup after restart. Confirm raccoon icons unchanged. |
 | New adult, no cheats or rope | Native Pick Up appears. Diagnostic weight is finite and below Strength-based limit. Native action creates Base.Animal, equips hands, clears wild; drop and repeat. |
 | New kitten | Friendly domestic baseline, distinct type/name/scale. Native pickup without rope, drop, care and petting; stress can still produce flight. |
 | Adult fear comparison | Compare fresh raccoon sow/boar and cat under similar stress/acceptance/genetics. Same wild/flee/motions, no mod speed multiplier or acceptance threshold. |

@@ -60,7 +60,7 @@ local function fill(player, context, worldobjects, test)
                     local info = menu:addOption(getText("ContextMenu_EwingsAnimals_Handling",
                         string.format("%.2f", weight), tostring(limit)))
                     info.notAvailable = true
-                    print("EwingsAnimals 0.1.3 handling type=" .. animal:getAnimalType()
+                    print("EwingsAnimals 0.1.4 handling type=" .. animal:getAnimalType()
                         .. " weight=" .. tostring(weight) .. " limit=" .. tostring(limit)
                         .. " pickup=" .. tostring(animal:canBePicked(playerObj))
                         .. " attach=" .. tostring(animal:getBehavior():canBeAttached())

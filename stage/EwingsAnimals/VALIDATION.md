@@ -1,4 +1,4 @@
-# Offline validation - Ewing's Animals 0.1.3
+# Offline validation - Ewing's Animals 0.1.4
 
 Target: B42.21 / Steam25485521, Windows.
 
@@ -15,7 +15,9 @@ Target: B42.21 / Steam25485521, Windows.
 - Installed JVM reproduced NaN weight from zero stage duration and finite pickup-eligible weight with duration 60.
 - Cat-only food menu and kitten XML parser checks passed; live menu integration remains pending.
 - No pickup/acceptance bypass or save migration was added.
-- Original mesh, texture, icon and Blender source match v0.1.0 byte for byte.
+- Original mesh, coat texture and Blender source match v0.1.0 byte for byte.
+- Original adult/kitten icons regenerated; native breed path lookup, alpha/padding, exact casing and native hand render sizes checked.
+- User confirmed kitten pickup on 0.1.3; this is not 0.1.4 icon or multiplayer validation.
 - Four native motion clips sampled at five phases each: 20 offline poses passed.
 - Independent linear skinning comparison maximum error: 0.0000040946 model units.
 - Reference hashes match the baseline; no native files were changed.

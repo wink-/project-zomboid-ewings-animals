@@ -30,3 +30,5 @@ grant implied. No license rights to another mod or proprietary game asset are as
 SHA-256 values for the original principal native references. The private JVM
 probes load the installed Jassimp DLL by its supported loader configuration;
 the probes and native binaries are not included as runtime mod dependencies.
+
+The 0.1.4 adult/kitten icons are fresh offline Blender views of the existing original packed cat source, with original lighting/camera settings and transparent padding. Native raccoon icon pixels were not extracted or copied. Native texture-pack frame dimensions were inspected as metadata only.

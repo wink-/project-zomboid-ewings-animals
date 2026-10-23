@@ -1,5 +1,5 @@
 {
-  "version": "0.1.3",
+  "version": "0.1.4",
   "all_passed": true,
   "group_translation": "Cats",
   "native_xml_parser": {
@@ -61,7 +61,6 @@
   "unchanged_original_asset_sha256": {
     "models_X/Skinned/EwingsCat_Adult.x": "74b509201743e0f0ee97a7b6ed17bd1122d5d62c3743bed6d939ae4add07b05e",
     "textures/Body/EwingsCat_BrownTabby.png": "94aeb9068518079c03155553000bdfe503cf8f3943b956af7df5c3422bf61bfb",
-    "textures/Item_EwingsCat_Adult.png": "e179882612c664c6f871c673890f4743730abf0254751a46b82b265dd2d6835a",
     "art/EwingsCat_Adult.blend": "3d80434009270bdc914e08ea5c1f3836bae50f12b6c8494def1dd04a81c3387a"
   },
   "native_reference_hashes": {

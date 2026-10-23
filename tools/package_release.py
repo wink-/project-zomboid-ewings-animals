@@ -13,6 +13,8 @@ offline=json.loads((ROOT/'verification/offline_validation.json').read_text());ri
 petting=json.loads((ROOT/'verification/petting_validation.json').read_text())
 behavior=json.loads((ROOT/'verification/behavior_validation.json').read_text())
 assert behavior['all_passed'] and behavior['version']==VER
+icons=json.loads((ROOT/'verification/icon_validation.json').read_text())
+assert icons['all_passed'] and icons['version']==VER
 assert petting['all_passed'] and petting['version']==VER
 assert petting['native_pickup_stub_execution']['exit_code']==0
 assert rig['all_passed'] and rig['sample_count']==20
@@ -35,7 +37,9 @@ Target: B42.21 / Steam25485521, Windows.
 - Installed JVM reproduced NaN weight from zero stage duration and finite pickup-eligible weight with duration 60.
 - Cat-only food menu and kitten XML parser checks passed; live menu integration remains pending.
 - No pickup/acceptance bypass or save migration was added.
-- Original mesh, texture, icon and Blender source match v0.1.0 byte for byte.
+- Original mesh, coat texture and Blender source match v0.1.0 byte for byte.
+- Original adult/kitten icons regenerated; native breed path lookup, alpha/padding, exact casing and native hand render sizes checked.
+- User confirmed kitten pickup on 0.1.3; this is not 0.1.4 icon or multiplayer validation.
 - Four native motion clips sampled at five phases each: {rig['sample_count']} offline poses passed.
 - Independent linear skinning comparison maximum error: {rig['max_lbs_error']:.10f} model units.
 - Reference hashes match the baseline; no native files were changed.
@@ -79,7 +83,7 @@ install=entries_from(MOD.rglob('*'),'EwingsAnimals',MOD)
 assert any(n=='EwingsAnimals/42/mod.info' for n,d in install)
 assert any(n=='EwingsAnimals/common/README.txt' for n,d in install)
 assert not any(n.lower().endswith(('.dll','.jar','.class','.blend','.pyc')) for n,d in install)
-reports=['art_validation.json','rig_validation.json','offline_validation.json','native_reference_hashes.json','petting_validation.json','behavior_validation.json']
+reports=['art_validation.json','rig_validation.json','offline_validation.json','native_reference_hashes.json','petting_validation.json','behavior_validation.json','icon_validation.json']
 sourcepaths=[ROOT/n for n in DOCS+['VALIDATION.md','.gitignore']]
 sourcepaths+=list((ROOT/'tools').glob('*.py'))+[ROOT/'art/EwingsCat_Adult.blend']
 sourcepaths+=list((ROOT/'previews').glob('*.png'))+[ROOT/'verification'/n for n in reports]
@@ -93,6 +97,7 @@ manifest={'version':VER,'archives':[make(f'EwingsAnimals-{VER}-prototype-install
 shutil.copyfile(ROOT/'previews/EwingsAnimals_cat_preview.png',OUT/'EwingsAnimals-cat-preview.png')
 shutil.copyfile(ROOT/'previews/01_three_quarter.png',OUT/'EwingsAnimals-cat-three-quarter.png')
 shutil.copyfile(ROOT/'VALIDATION.md',OUT/'VALIDATION.md')
+shutil.copyfile(ROOT/'previews/EwingsAnimals_hand_icons_preview.png',OUT/'EwingsAnimals-hand-icons-preview.png')
 (OUT/'SHA256SUMS.txt').write_text(''.join(a['sha256']+'  '+a['file']+'\n' for a in manifest['archives']))
 (OUT/'release_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps(manifest,indent=2))

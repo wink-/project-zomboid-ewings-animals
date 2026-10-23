@@ -310,10 +310,10 @@ poses=[]
 for name,clip,fraction in [('04_idle_pose.png','Rac_Idle01.x',.4),('05_walk_pose.png','Rac_Walk.x',.35),('06_run_pose.png','Rac_Run.x',.3),('07_lying_pose.png','Rac_IdleLyingDown.x',.5)]:
     p=GAME/'media/anims_X/Raccoon'/clip;poses.append(apply_native_pose(p,fraction));render(name,(.64,.78,.42))
 
-# Original transparent icon made from this model, not native inventory artwork.
-for p in rig.pose.bones:p.matrix_basis=Matrix.Identity(4)
-bpy.context.view_layer.update();ground.hide_render=True;scene.render.film_transparent=True;scene.render.resolution_x=128;scene.render.resolution_y=128
-cam.location=(.64,.78,.42);aim(cam,(0,.04,.17));cd.ortho_scale=.57;scene.render.filepath=str(ASSETS/'textures/Item_EwingsCat_Adult.png');bpy.ops.render.render(write_still=True)
+# Render padded original adult/kitten icons using the dedicated headless pipeline.
+import subprocess
+subprocess.run([bpy.app.binary_path, '--background', '--factory-startup', '--python',
+    str(ROOT/'tools/render_icons.py')], check=True)
 
 # A contact sheet is an offline Blender preview, never an in-game screenshot.
 files=sorted((ROOT/'previews').glob('0*.png'));tw,th=450,400;sheet=np.ones((th*2,tw*4,4),dtype=np.float32);sheet[:,:,:3]=.075

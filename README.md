@@ -1,4 +1,4 @@
-# Ewing's Animals 0.1.3 prototype
+# Ewing's Animals 0.1.4 prototype
 
 Standalone mod ID `EwingsAnimals`; target inspected B42.21 / Steam25485521,
 Windows. Original brown tabby cats using native raccoon motions and native
@@ -87,10 +87,29 @@ rewrite is included. Prefer a fresh disposable cat for first verification;
 if an older cat reports NaN, retain that diagnostic rather than editing a
 valuable save. Existing adults are not converted to kittens.
 
-Original mesh, coat, icon and packed Blender source are unchanged from 0.1.0.
+Original mesh, coat and packed Blender source are unchanged from 0.1.0.
+The adult/kitten inventory icons are newly rendered from that source.
 The source ZIP includes authoring assets, tools and verification reports;
 Blender/Python are not required to play. Raccoon gait/crouches and angular
 geometry remain visible. No native game artwork or motion payloads are bundled.
 Persistent custom entities require the mod; do not remove it from a valuable
 world containing cats without a backup. Rollback tests belong in disposable
 worlds. Multiplayer and save/reload acceptance remain pending.
+
+## Held and inventory icons in 0.1.4
+
+The original icon used a bare texture-pack-style name. Native animal inventory
+code passes breed icon strings directly to Texture.getSharedTexture, without
+adding a directory or extension. Unlike packed vanilla raccoon icons, our loose
+PNGs therefore need complete media/textures/...png references. Both adult sexes
+and the kitten now resolve their own original transparent 128x128 icons.
+The native inventory item and both hand slots use the same resolved texture.
+No Base.Animal, global item icon, UI code or native animal definition is replaced.
+
+previews/EwingsAnimals_hand_icons_preview.png shows an offline approximation of
+the native hand rectangles and exact icon sizes for 48/64/96 sidebar settings,
+plus 32-pixel inventory samples. These are pipeline previews, not game images.
+The user confirmed kitten pickup in installed 0.1.3; that confirms neither
+0.1.4 icon rendering nor adult/growth/multiplayer behavior. Installation and
+publication of this candidate are pending separate coordination. Existing held
+items may need a drop/pickup after restart for native icon reinitialization.
